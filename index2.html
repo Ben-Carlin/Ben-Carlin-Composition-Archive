@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- EDIT HERE: Page Title & Meta Description for SEO -->
+    <title>Ben Carlin | Film & Game Composer</title>
+    <meta name="description" content="Portfolio of Ben Carlin - Film & Game Composer.">
+
+    <link rel="icon" type="image/x-icon" href="https://github.com/Ben-Carlin/Ben-Carlin-Composition-Archive/raw/refs/heads/main/logoleaf.ico">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+        theme: {
+        extend: {
+        colors: {
+        'dark-green': '#0A3323',
+        'moss-green': '#839958',
+        'beige': '#F7F4D5',
+        'rosy-brown': '#D3968C',
+        'midnight-green': '#105666',
+        },
+        fontFamily: {
+        serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+        sans: ['Plus Jakarta Sans', 'sans-serif'],
+        }
+        }
+        }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome Vector Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            background-color: #0A3323;
+            color: #F7F4D5;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Design Tokens */
+        .glass-card {
+            background: rgba(16, 86, 102, 0.25);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(247, 244, 213, 0.15);
+        }
+
+        .glass-card-light {
+            background: rgba(247, 244, 213, 0.06);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(247, 244, 213, 0.12);
+        }
+
+        /* Custom Ambient Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0A3323;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #839958;
+            border-radius: 4px;
+        }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background: #D3968C;
+            }
+
+        /* Canvas Spore Overlay */
+        #sporeCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .parallax-layer {
+            transition: transform 0.15s cubic-bezier(0.1, 0.5, 0.1, 1);
+        }
+
+        /* Hide injected Netlify badge elements without affecting main content */
+        iframe[src*="netlify"],
+        a[href*="netlify.com"] {
+            display: none !important;
+        }
+    </style>
+</head>
+<body class="relative selection:bg-rosy-brown selection:text-dark-green">
+
+    <!-- Interactive Canvas for Ambient Floating Dust Particles -->
+    <canvas id="sporeCanvas"></canvas>
+
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 px-6 md:px-12 backdrop-blur-md bg-dark-green/80 border-b border-beige/10">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <!-- Brand Logo / Name with Leaf Icon -->
+            <a href="#hero" class="font-serif text-2xl font-bold tracking-wide text-beige flex items-center gap-3 hover:text-rosy-brown transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor" class="h-8 w-auto text-moss-green">
+                    <path fill="currentColor" d="M28.082 9.534c-0.058 0.174-0.117 0.349-0.176 0.525 0.674 3.296 0.425 6.877-1.276 10.787 0.247-2.511 0.206-4.913-0.182-7.215-0.458 0.891-1.042 1.755-1.64 2.624 0.085 2.497-0.381 5.132-1.603 7.944 0.196-1.997 0.16-3.922-0.036-5.794-0.801 0.911-1.695 1.786-2.697 2.587-0.237 1.584-0.684 3.223-1.421 4.92 0.132-1.348 0.154-2.68 0.109-3.972-2.221 1.51-4.858 2.718-8.053 3.389 2.691-1.51 4.838-3.068 6.596-4.665-1.156-0.241-2.346-0.399-3.535-0.51 1.572-0.397 3.124-0.552 4.628-0.51 1.075-1.099 1.973-2.205 2.697-3.353-2.005-0.361-4.034-0.465-6.086-0.328 2.355-1.14 4.702-1.538 7.033-1.385 0.602-1.24 1.014-2.523 1.312-3.826-1.773-0.168-3.704 0.253-5.904 0.802 1.986-1.82 4.133-2.61 6.268-2.842 0.111-0.903 0.169-1.808 0.18-2.741-9.848-7.007-7.239 16.56-22.665 20.346 12.693 7.863 37.271-3.539 26.451-16.782zM25.788 1.846c0.628-0.305 1.39-0.323 1.968 0.219 0.33 3.103-0.68 9.663-4.665 14.249 3.039-5.538 3.261-9.548 2.697-14.467v-0z" />
+                </svg>
+                <span>Ben Carlin</span>
+            </a>
+
+            <!-- Desktop Nav Items with Even Spacing -->
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-medium">
+                <a href="#music" class="text-beige/85 hover:text-rosy-brown transition-colors py-1">Audio Portfolio</a>
+                <a href="#video-reels" class="text-beige/85 hover:text-rosy-brown transition-colors py-1">Film & Game Reels</a>
+                <a href="#about" class="text-beige/85 hover:text-rosy-brown transition-colors py-1">About</a>
+                <a href="#inspirations" class="text-beige/85 hover:text-rosy-brown transition-colors py-1">Inspirations</a>
+                <a href="#services" class="text-beige/85 hover:text-rosy-brown transition-colors py-1">Services</a>
+                <a href="#contact" class="ml-2 px-5 py-2 rounded-full border border-rosy-brown text-rosy-brown hover:bg-rosy-brown hover:text-dark-green transition-all duration-300 shadow-sm">Get in Touch</a>
+            </nav>
+
+            <!-- Mobile Hamburger Button -->
+            <button id="mobileMenuBtn" class="lg:hidden text-beige text-2xl focus:outline-none p-2" aria-label="Toggle navigation menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobileMenu" class="hidden lg:hidden absolute top-full left-0 right-0 bg-dark-green/95 border-b border-beige/10 py-6 px-6 flex flex-col space-y-4 text-center backdrop-blur-xl shadow-2xl">
+            <a href="#music" class="mobile-link text-beige/90 hover:text-rosy-brown py-2 text-base font-medium">Audio Portfolio</a>
+            <a href="#video-reels" class="mobile-link text-beige/90 hover:text-rosy-brown py-2 text-base font-medium">Film & Game Reels</a>
+            <a href="#about" class="mobile-link text-beige/90 hover:text-rosy-brown py-2 text-base font-medium">About</a>
+            <a href="#inspirations" class="mobile-link text-beige/90 hover:text-rosy-brown py-2 text-base font-medium">Inspirations</a>
+            <a href="#services" class="mobile-link text-beige/90 hover:text-rosy-brown py-2 text-base font-medium">Services</a>
+            <a href="#contact" class="mobile-link inline-block mx-auto mt-2 px-6 py-2.5 rounded-full border border-rosy-brown text-rosy-brown hover:bg-rosy-brown hover:text-dark-green transition">Get in Touch</a>
+        </div>
+    </header>
+
+    <!-- SECTION 1: HERO SECTION -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center pt-28 pb-16 px-6 overflow-hidden">
+        <div class="parallax-layer absolute -top-10 -left-10 w-72 md:w-96 opacity-30 pointer-events-none text-moss-green" data-speed="0.03">
+            <svg viewBox="0 0 200 200" fill="currentColor" class="w-full h-full">
+                <path d="M45.7,-64.5C58.8,-54.3,68.9,-40.5,73.4,-25.4C77.9,-10.3,76.8,6.1,71.2,20.8C65.6,35.5,55.5,48.5,42.5,57.7C29.5,66.9,13.6,72.3,-2.4,75.6C-18.4,78.9,-34.5,80.1,-47.4,72.6C-60.3,65.1,-70,48.9,-75.4,32C-80.8,15.1,-81.9,-2.5,-76.3,-17.8C-70.7,-33.1,-58.4,-46.1,-44.6,-56.1C-30.8,-66.1,-15.4,-73.1,0.5,-73.8C16.4,-74.5,32.6,-74.7,45.7,-64.5Z" transform="translate(100 100)" />
+            </svg>
+        </div>
+        <div class="parallax-layer absolute bottom-10 -right-16 w-80 md:w-[30rem] opacity-20 pointer-events-none text-midnight-green" data-speed="-0.04">
+            <svg viewBox="0 0 200 200" fill="currentColor" class="w-full h-full">
+                <path d="M38.1,-53.4C48.7,-43.3,56.4,-30.9,60.8,-17.3C65.2,-3.7,66.3,11.1,61.8,24.3C57.3,37.5,47.2,49.1,34.8,56.5C22.4,63.9,7.7,67.1,-7.2,69.6C-22.1,72.1,-37.2,73.9,-48.7,67C-60.2,60.1,-68.1,44.5,-72.1,28.4C-76.1,12.3,-76.2,-4.3,-70.7,-18.7C-65.2,-33.1,-54.1,-45.3,-41.3,-54.8C-28.5,-64.3,-14.3,-71.1,0.4,-71.7C15.1,-72.3,30.2,-66.7,38.1,-53.4Z" transform="translate(100 100)" />
+            </svg>
+        </div>
+
+        <div class="relative z-10 max-w-4xl mx-auto text-center space-y-8">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-xs md:text-sm text-moss-green tracking-wider uppercase font-semibold">
+                <span class="w-2 h-2 rounded-full bg-rosy-brown animate-pulse"></span>
+                <span>Film & Game Music Portfolio</span>
+            </div>
+
+            <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-beige leading-tight">
+                Composer for <br class="hidden sm:inline" />
+                <span class="italic text-rosy-brown font-normal">Films, Games & Media</span>
+            </h1>
+
+            <p class="max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-beige/85 font-light leading-relaxed">
+                Hello, I'm <strong class="text-beige font-semibold">Ben Carlin</strong>. Rooted in classical piano with over seven years of practise, I write original music and soundtracks for indie games, films, and more.
+            </p>
+
+            <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+                <a href="#music" class="w-full sm:w-auto px-8 py-4 rounded-full bg-rosy-brown text-dark-green font-semibold hover:bg-beige transition-all duration-300 shadow-lg flex items-center justify-center gap-3">
+                    <i class="fas fa-play text-xs"></i>
+                    <span>Listen to Audio Reel</span>
+                </a>
+                <a href="#video-reels" class="w-full sm:w-auto px-8 py-4 rounded-full glass-card text-beige font-medium hover:border-rosy-brown hover:text-rosy-brown transition-all duration-300 flex items-center justify-center gap-2">
+                    <i class="fas fa-film text-xs"></i>
+                    <span>Watch Project Reels</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: AUDIO REEL / PORTFOLIO PLAYER -->
+    <section id="music" class="relative py-24 px-6 bg-dark-green/60 border-t border-beige/5">
+        <div class="max-w-5xl mx-auto space-y-10 relative z-10">
+
+            <div class="text-center space-y-3">
+                <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-beige">Audio Showcase</h2>
+                <p class="text-beige/70 text-sm max-w-xl mx-auto">Select a track below to explore some original scores. Feel free to skip into middle and end parts of tracks, as sections vary in sound and intensity.</p>
+            </div>
+
+            <!-- Custom Audio Player Container -->
+            <div class="glass-card rounded-3xl p-5 sm:p-8 md:p-10 shadow-2xl space-y-6 sm:space-y-8 border border-beige/20">
+
+                <!-- Player Active Track Info Header -->
+                <div class="flex flex-col md:flex-row items-center justify-between gap-6 border-b border-beige/10 pb-6">
+                    <div class="flex items-center gap-4 sm:gap-5 w-full md:w-auto">
+                        <div class="w-14 h-14 sm:w-20 sm:h-20 rounded-2xl bg-midnight-green flex items-center justify-center text-beige text-xl sm:text-3xl shrink-0 shadow-inner">
+                            <i id="playerAlbumIcon" class="fas fa-music"></i>
+                        </div>
+                        <div>
+                            <span id="playerCategory" class="text-xs uppercase tracking-widest text-rosy-brown font-semibold">Roleplaying Game OST</span>
+                            <h3 id="playerTitle" class="font-serif text-xl sm:text-2xl md:text-3xl font-bold text-beige leading-snug">The Nevermare</h3>
+                            <p id="playerDesc" class="text-xs sm:text-sm text-beige/70 mt-1">Piano focused, soft strings, tense and mysterious, loop-based.</p>
+                        </div>
+                    </div>
+
+                    <!-- Category Filter Tabs -->
+                    <div class="flex flex-wrap gap-2 justify-start md:justify-end w-full md:w-auto">
+                        <button class="filter-btn active px-3.5 py-1.5 rounded-full text-xs font-medium border border-rosy-brown bg-rosy-brown text-dark-green transition-all" data-filter="all">All Tracks</button>
+                        <button class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-medium border border-beige/20 text-beige/80 hover:border-rosy-brown transition-all" data-filter="Game OST">Game Music</button>
+                        <button class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-medium border border-beige/20 text-beige/80 hover:border-rosy-brown transition-all" data-filter="film">Film / Video Score</button>
+                        <button class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-medium border border-beige/20 text-beige/80 hover:border-rosy-brown transition-all" data-filter="classical">Classical Composition</button>
+                    </div>
+                </div>
+
+                <!-- Controls & Progress Bar -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3 sm:gap-4 text-xs font-mono text-beige/70">
+                        <span id="currentTime">0:00</span>
+                        <div class="relative flex-1 h-2 bg-midnight-green rounded-full cursor-pointer overflow-hidden" id="progressBarContainer">
+                            <div id="progressBar" class="absolute left-0 top-0 bottom-0 bg-rosy-brown w-0 rounded-full transition-all duration-100"></div>
+                        </div>
+                        <span id="totalTime">2:00</span>
+                    </div>
+
+                    <div class="flex items-center justify-between pt-1">
+                        <div class="flex items-center gap-2 sm:gap-4">
+                            <button id="prevBtn" aria-label="Previous Track" class="text-beige/70 hover:text-beige text-base sm:text-lg p-2 transition"><i class="fas fa-step-backward"></i></button>
+                            <button id="playBtn" aria-label="Play or Pause Track" class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-rosy-brown text-dark-green text-lg sm:text-xl flex items-center justify-center hover:scale-105 transition shadow-lg">
+                                <i class="fas fa-play ml-0.5"></i>
+                            </button>
+                            <button id="nextBtn" aria-label="Next Track" class="text-beige/70 hover:text-beige text-base sm:text-lg p-2 transition"><i class="fas fa-step-forward"></i></button>
+                        </div>
+
+                        <!-- Volume Controls -->
+                        <div class="flex items-center gap-2 text-beige/70">
+                            <i class="fas fa-volume-high text-xs"></i>
+                            <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="0.8" aria-label="Volume Slider" class="w-16 sm:w-24 accent-rosy-brown cursor-pointer">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Track Selector List -->
+                <div class="pt-4 border-t border-beige/10">
+                    <h4 class="text-xs uppercase tracking-widest text-beige/50 font-semibold mb-3">Playlist Selector</h4>
+                    <!-- Scrollable container set to show ~6 tracks with a clean custom scrollbar -->
+                    <div class="max-h-[340px] overflow-y-auto pr-2">
+                        <div id="trackList" class="space-y-2">
+                            <!-- Tracks dynamically rendered via JavaScript below -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: FILM & GAME VIDEO REELS -->
+    <section id="video-reels" class="relative py-24 px-6 bg-midnight-green/30 border-t border-beige/5">
+        <div class="max-w-6xl mx-auto space-y-10 relative z-10">
+            <div class="text-center space-y-3">
+                <span class="text-xs uppercase tracking-widest text-rosy-brown font-semibold">Visual Scoring Showcase</span>
+                <h2 class="font-serif text-4xl md:text-5xl font-bold text-beige">Film & Game Reels</h2>
+                <p class="text-beige/70 max-w-xl mx-auto text-sm">Watch video excerpts showing how music interacts directly with footage and cinematic scenes. Feel free to skip into middle and end parts of reels, as sections vary in sound and intensity.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <!-- Video Player Frame -->
+                <div class="lg:col-span-8 glass-card rounded-3xl p-4 md:p-6 border border-beige/20 shadow-2xl space-y-4">
+                    <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-dark-green shadow-inner border border-beige/10">
+                        <iframe id="videoFrame" class="w-full h-full" src="https://www.youtube-nocookie.com/embed/vym7TKkk4ww" title="Ben Carlin Composition Reel" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="flex items-center justify-between px-2 pt-2">
+                        <div>
+                            <h3 id="videoTitle" class="font-serif text-xl font-bold text-beige">Short Film Excerpt</h3>
+                            <p id="videoDesc" class="text-xs text-beige/60">Intimate romantic piano with warm strings, and solo guitar help tell the story of heartbreak and the healing-journey afterwards.</p>
+                        </div>
+                        <span id="videoTag" class="px-3 py-1 rounded-full text-xs font-semibold bg-moss-green/20 text-moss-green border border-moss-green/40">Film</span>
+                    </div>
+                </div>
+
+                <!-- Video Playlist Selector -->
+                <div class="lg:col-span-4 space-y-3">
+                    <h4 class="text-xs uppercase tracking-widest text-beige/60 font-semibold mb-2 px-1">Select Project Snippet</h4>
+
+                    <div class="video-item active p-4 rounded-2xl glass-card border border-rosy-brown/60 cursor-pointer transition-all hover:border-rosy-brown space-y-1" data-video="https://www.youtube-nocookie.com/embed/vym7TKkk4ww" data-title="Short Film Excerpt" data-desc="Intimate romantic piano with warm strings, and solo guitar help tell the story of heartbreak and the healing-journey afterwards." data-tag="Film">
+                        <div class="flex justify-between items-center text-xs text-rosy-brown font-semibold">
+                            <span>01 / SHORT FILM</span>
+                            <i class="fas fa-play-circle text-sm"></i>
+                        </div>
+                        <h5 class="text-sm font-bold text-beige">"How to mend a broken Heart" by Roberto Parseghian</h5>
+                        <p class="text-xs text-beige/60">Piano and Orchestra</p>
+                    </div>
+
+                    <div class="video-item p-4 rounded-2xl glass-card-light border border-beige/10 cursor-pointer transition-all hover:border-rosy-brown space-y-1" data-video="https://www.youtube-nocookie.com/embed/yQUrxphQVSI" data-title="Short Film Excerpt" data-desc="Impressionistic piano improvisations melt into swelling strings, to support a story of confusion in love and anguish." data-tag="Film">
+                        <div class="flex justify-between items-center text-xs text-moss-green font-semibold">
+                            <span>02 / SHORT FILM</span>
+                            <i class="fas fa-play-circle text-sm"></i>
+                        </div>
+                        <h5 class="text-sm font-bold text-beige">"Die Leiden des jungen Konrad" by Niels Dressel</h5>
+                        <p class="text-xs text-beige/60">Piano-focused</p>
+                    </div>
+
+                    <div class="video-item p-4 rounded-2xl glass-card-light border border-beige/10 cursor-pointer transition-all hover:border-rosy-brown space-y-1" data-video="https://youtu.be/Mtm2Qj-pSuQ" data-title="Short Film Excerpt" data-desc="Solo cello and harp blend into romantic strings, to convey a love that has held strong for years." data-tag="Game" data-half-volume="false">
+                        <div class="flex justify-between items-center text-xs text-beige/70 font-semibold">
+                            <span>03 / SHORT FILM</span>
+                            <i class="fas fa-play-circle text-sm"></i>
+                        </div>
+                        <h5 class="text-sm font-bold text-beige">"Beeloved" by Nihar Kandarpa</h5>
+                        <p class="text-xs text-beige/60">Orchestral</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: ABOUT BEN -->
+    <section id="about" class="relative py-24 px-6 border-t border-beige/5">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+            <div class="lg:col-span-5 relative">
+                <div class="relative z-10 rounded-3xl overflow-hidden glass-card p-4 border border-beige/20 shadow-2xl">
+                    <div class="aspect-[4/5] rounded-2xl bg-gradient-to-tr from-midnight-green via-dark-green to-moss-green flex flex-col items-center justify-center relative overflow-hidden group">
+                        <!-- Corrected Raw GitHub Image Link -->
+                        <img src="https://raw.githubusercontent.com/Ben-Carlin/Ben-Carlin-Composition-Archive/9ef9041e1008aa8aad0d71a23fd9968a12b32e68/ProfilePic.JPG.jpeg" alt="Ben Carlin" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="absolute -bottom-6 -right-6 w-full h-full bg-moss-green/20 rounded-3xl -z-10 blur-xl"></div>
+            </div>
+
+            <div class="lg:col-span-7 space-y-6">
+                <div class="space-y-2">
+                    <span class="text-xs uppercase tracking-widest text-moss-green font-semibold">The Story Behind The Sound</span>
+                    <h2 class="font-serif text-4xl md:text-5xl font-bold text-beige leading-tight">A Classical Ear Meets Storybooks</h2>
+                </div>
+
+                <p class="text-beige/85 text-lg leading-relaxed font-light">
+                    My musical journey started with learning Nintendo music on a keyboard, which lead me to study classical piano in my teens. Now I've gone full circle. Over the past <strong class="text-beige font-semibold">7+ years of composing</strong>, I've combined that foundation with my passion for stories and however they might be told: through films, games, or any form of art.
+                </p>
+
+                <p class="text-beige/75 text-base leading-relaxed">
+                    I prefer writing music that focuses on the small narrative details rather than trying to be huge and epic all the time. For whichever artform it may be, I just want the music to feel natural and make the emotions of the scene shine.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
+                    <div class="glass-card-light p-4 rounded-2xl border border-beige/10 flex items-start gap-3">
+                        <i class="fas fa-feather-pointed text-xl text-rosy-brown mt-1"></i>
+                        <div>
+                            <h4 class="font-bold text-sm text-beige">Melodic Mindfulness</h4>
+                            <p class="text-xs text-beige/60 mt-1">The right melody can add a new axis of emotional story telling—I like finding it.</p>
+                        </div>
+                    </div>
+                    <div class="glass-card-light p-4 rounded-2xl border border-beige/10 flex items-start gap-3">
+                        <i class="fas fa-music text-xl text-moss-green mt-1"></i>
+                        <div>
+                            <h4 class="font-bold text-sm text-beige">Harmonies in the Heart Strings</h4>
+                            <p class="text-xs text-beige/60 mt-1">I aquired a rich pallet of harmonies through my experience in romantic-impressionistic music, and study of japanese soundtracks.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: INSPIRATIONS -->
+    <section id="inspirations" class="relative py-24 px-6 bg-midnight-green/20 border-y border-beige/5">
+        <div class="max-w-6xl mx-auto space-y-12">
+
+            <div class="text-center space-y-3">
+                <span class="text-xs uppercase tracking-widest text-rosy-brown font-semibold">Musical DNA</span>
+                <h2 class="font-serif text-4xl md:text-5xl font-bold text-beige">Influences & Inspiration</h2>
+                <p class="text-beige/70 max-w-xl mx-auto text-sm">My sound sits at the crossroads of romantic classical harmony, nostalgic Japanese video game scoring, and modern cozy indie aesthetics.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <div class="glass-card p-8 rounded-3xl border border-beige/15 space-y-6 hover:translate-y-1 transition-transform duration-300">
+                    <div class="w-12 h-12 rounded-2xl bg-rosy-brown/20 text-rosy-brown flex items-center justify-center text-2xl">
+                        <i class="fas fa-scroll"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-beige">Classical Romanticism</h3>
+                    <p class="text-xs text-beige/60 leading-relaxed">Intricate piano harmonies, expressive playing, and emotional depth.</p>
+
+                    <ul class="space-y-4 pt-2 border-t border-beige/10">
+                        <li class="space-y-0.5">
+                            <div class="flex items-center gap-2 text-sm text-beige font-semibold">
+                                <span class="w-1.5 h-1.5 rounded-full bg-rosy-brown"></span>
+                                <span>Frédéric Chopin</span>
+                            </div>
+                            <p class="text-[11px] text-beige/50 pl-3.5">Nocturnes, Ballades & Romantic Piano</p>
+                        </li>
+                        <li class="space-y-0.5">
+                            <div class="flex items-center gap-2 text-sm text-beige font-semibold">
+                                <span class="w-1.5 h-1.5 rounded-full bg-rosy-brown"></span>
+                                <span>Sergei Rachmaninoff</span>
+                            </div>
+                            <p class="text-[11px] text-beige/50 pl-3.5">Piano Concerto No. 2, Rhapsody on a Theme of Paganini</p>
+                        </li>
+                        <li class="space-y-0.5">
+                            <div class="flex items-center gap-2 text-sm text-beige font-semibold">
+                                <span class="w-1.5 h-1.5 rounded-full bg-rosy-brown"></span>
+                                <span>Takashi Yoshimatsu</span>
+                            </div>
+                            <p class="text-[11px] text-beige/50 pl-3.5">And Birds Are Still, Memo Flora</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="glass-card p-8 rounded-3xl border border-beige/15 space-y-6 hover:translate-y-1 transition-transform duration-300">
+                    <div class="w-12 h-12 rounded-2xl bg-moss-green/20 text-moss-green flex items-center justify-center text-2xl">
+                        <i class="fas fa-cloud-sun"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-beige">Nintendo & Ghibli</h3>
+                    <p class="text-xs text-beige/60 leading-relaxed">Unforgettable melody lines, playful motifs, and storybook vibes.</p>
+
+                    <ul class="space-y-4 pt-2 border-t border-beige/10">
+                        <li class="space-y-0.5">
+                            <div class="flex items-center gap-2 text-sm text-beige font-semibold">
+                                <span class="w-1.5 h-1.5 rounded-full bg-moss-green"></span>
+                                <span>Joe Hisaishi</span>
+                            </div>
+                            <p class="text-[11px] text-beige/50 pl-3.5">Spirited Away, Princess Mononoke, My Neighbor Totoro</p>
+                        </li>
+                        <li class="space-y-0.5">
+                            <div class="flex items-center gap-2 text-sm text-beige font-semibold">
+                                <span class="w-1.5 h-1.5 rounded-full bg-moss-green"></span>
+                                <span>Koji Kondo</span>
+                            </div>
+                            <p class="text-[11px] text-beige/50 pl-3.5">The Legend of Zelda, Super Mario Bros.</p>
+                        </li>
+                        <li class="space-y-0.5">
+                            <div class="flex items-center gap-2 text-sm text-beige font-semibold">
+                                <span class="w-1.5 h-1.5 rounded-full bg-moss-green"></span>
+                                <span>Jun Ishikawa</span>
+                            </div>
+                            <p class="text-[11px] text-beige/50 pl-3.5">Kirby series, HAL Laboratory Classics</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="glass-card p-8 rounded-3xl border border-beige/15 space-y-6 hover:translate-y-1 transition-transform duration-300">
+                    <div class="w-12 h-12 rounded-2xl bg-midnight-green/40 text-beige flex items-center justify-center text-2xl">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-beige">Modern Game Legends</h3>
+                    <p class="text-xs text-beige/60 leading-relaxed">Atmospheric acoustic layering and emotional narrative punch.</p>
+
+                    <ul class="space-y-4 pt-2 border-t border-beige/10">
+                        <li class="space-y-0.5">
+                            <div class="flex items-center gap-2 text-sm text-beige font-semibold">
+                                <span class="w-1.5 h-1.5 rounded-full bg-beige"></span>
+                                <span>Christopher Larkin</span>
+                            </div>
+                            <p class="text-[11px] text-beige/50 pl-3.5">Hollow Knight, Silksong</p>
+                        </li>
+                        <li class="space-y-0.5">
+                            <div class="flex items-center gap-2 text-sm text-beige font-semibold">
+                                <span class="w-1.5 h-1.5 rounded-full bg-beige"></span>
+                                <span>Yasunori Nishiki</span>
+                            </div>
+                            <p class="text-[11px] text-beige/50 pl-3.5">Octopath Traveler</p>
+                        </li>
+                        <li class="space-y-0.5">
+                            <div class="flex items-center gap-2 text-sm text-beige font-semibold">
+                                <span class="w-1.5 h-1.5 rounded-full bg-beige"></span>
+                                <span>Lena Raine</span>
+                            </div>
+                            <p class="text-[11px] text-beige/50 pl-3.5">Celeste, Minecraft, Chicory</p>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: SERVICES & PROCESS -->
+    <section id="services" class="relative py-20 px-4 sm:px-6">
+        <div class="max-w-5xl mx-auto space-y-10">
+
+            <div class="text-center space-y-3">
+                <span class="text-xs uppercase tracking-widest text-moss-green font-semibold">What I Offer</span>
+                <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-beige">Scoring & Audio Services</h2>
+                <p class="text-beige/70 text-sm max-w-xl mx-auto">Original musical solutions written to enrich your film, game, or media project.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass-card-light p-6 sm:p-8 rounded-3xl border border-beige/10 space-y-4 hover:border-rosy-brown/50 transition duration-300">
+                    <span class="text-2xl font-serif font-bold text-rosy-brown">01</span>
+                    <h3 class="font-serif text-xl sm:text-2xl font-bold text-beige">Original Film Scoring</h3>
+                    <p class="text-xs sm:text-sm text-beige/70 leading-relaxed">
+                        Custom orchestral and acoustic film compositions synced to your cut. From intimate character themes to cinematic arrangements.
+                    </p>
+                </div>
+
+                <div class="glass-card-light p-6 sm:p-8 rounded-3xl border border-beige/10 space-y-4 hover:border-moss-green/50 transition duration-300">
+                    <span class="text-2xl font-serif font-bold text-moss-green">02</span>
+                    <h3 class="font-serif text-xl sm:text-2xl font-bold text-beige">Original Game Audio</h3>
+                    <p class="text-xs sm:text-sm text-beige/70 leading-relaxed">
+                        Multi-layered music loops written to respond dynamically to exploration states and story beats.
+                    </p>
+                </div>
+
+                <div class="glass-card-light p-6 sm:p-8 rounded-3xl border border-beige/10 space-y-4 hover:border-beige/50 transition duration-300">
+                    <span class="text-2xl font-serif font-bold text-beige">03</span>
+                    <h3 class="font-serif text-xl sm:text-2xl font-bold text-beige">Piano transcriptions and Arrangements</h3>
+                    <p class="text-xs sm:text-sm text-beige/70 leading-relaxed">
+                        Songs and pieces transcribed by ear into beginner friendly or intermediate difficulty sheet music. Cleanly and accuratly.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 7: CONTACT FORM & FOOTER -->
+    <section id="contact" class="relative py-24 px-6 bg-dark-green/90 border-t border-beige/5">
+        <div class="max-w-4xl mx-auto space-y-10">
+
+            <div class="text-center space-y-3">
+                <span class="text-xs uppercase tracking-widest text-rosy-brown font-semibold">Start A Conversation</span>
+                <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-beige">Let's Create Something</h2>
+                <p class="text-beige/70 text-sm max-w-md mx-auto">Have a game demo, film script, or creative project in mind? Reach out and let's discuss how we can work together to make your world less quiet.</p>
+            </div>
+
+            <!-- Form Container -->
+            <div class="glass-card p-6 sm:p-10 rounded-3xl border border-beige/20 shadow-2xl">
+                <form id="contactForm" class="space-y-5" action="https://formspree.io/f/xbggnryv" method="POST">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div class="space-y-1.5">
+                            <label for="name" class="block text-xs uppercase tracking-wider text-beige/80 font-medium">Your Name</label>
+                            <input type="text" id="name" name="name" required placeholder="e.g. Maya Lin" class="w-full px-4 py-3 rounded-xl bg-midnight-green/40 border border-beige/20 text-beige text-sm placeholder-beige/30 focus:outline-none focus:border-rosy-brown transition">
+                        </div>
+                        <div class="space-y-1.5">
+                            <label for="email" class="block text-xs uppercase tracking-wider text-beige/80 font-medium">Email Address</label>
+                            <input type="email" id="email" name="email" required placeholder="maya@studio.com" class="w-full px-4 py-3 rounded-xl bg-midnight-green/40 border border-beige/20 text-beige text-sm placeholder-beige/30 focus:outline-none focus:border-rosy-brown transition">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div class="space-y-1.5">
+                            <label for="projectType" class="block text-xs uppercase tracking-wider text-beige/80 font-medium">Project Type</label>
+                            <select id="projectType" name="projectType" class="w-full px-4 py-3 rounded-xl bg-midnight-green/90 border border-beige/20 text-beige text-sm focus:outline-none focus:border-rosy-brown transition">
+                                <option value="game">Video Game</option>
+                                <option value="film">Film / Short Film</option>
+                                <option value="trailer">Video</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="space-y-1.5">
+                            <label for="timeline" class="block text-xs uppercase tracking-wider text-beige/80 font-medium">Timeline / Budget</label>
+                            <input type="text" id="timeline" name="timeline" placeholder="e.g. Q3 2024 / Flexible" class="w-full px-4 py-3 rounded-xl bg-midnight-green/40 border border-beige/20 text-beige text-sm placeholder-beige/30 focus:outline-none focus:border-rosy-brown transition">
+                        </div>
+                    </div>
+
+                    <div class="space-y-1.5">
+                        <label for="message" class="block text-xs uppercase tracking-wider text-beige/80 font-medium">Project Details</label>
+                        <textarea id="message" name="message" rows="4" required placeholder="Tell me about your project's story, tone, or music reference ideas..." class="w-full px-4 py-3 rounded-xl bg-midnight-green/40 border border-beige/20 text-beige text-sm placeholder-beige/30 focus:outline-none focus:border-rosy-brown transition"></textarea>
+                    </div>
+
+                    <div id="formSuccessMessage" class="hidden p-4 rounded-xl bg-moss-green/30 border border-moss-green text-beige text-xs sm:text-sm text-center">
+                        Thank you! Your message has been sent. I will get back to you soon.
+                    </div>
+
+                    <button type="submit" class="w-full py-3.5 rounded-xl bg-rosy-brown text-dark-green font-bold text-sm sm:text-base hover:bg-beige transition duration-300 shadow-lg">
+                        Send Inquiry
+                    </button>
+                </form>
+            </div>
+
+            <!-- Social Media Links & Legal Footer -->
+            <footer class="pt-10 text-center space-y-6 border-t border-beige/10">
+                <div class="flex items-center justify-center gap-4 sm:gap-6 text-lg">
+                    <a href="https://on.soundcloud.com/bWmzBMEzoQcyHDFA3O" target="_blank" rel="noopener noreferrer" aria-label="SoundCloud" class="w-10 h-10 rounded-full glass-card flex items-center justify-center text-beige hover:text-rosy-brown hover:border-rosy-brown transition"><i class="fab fa-soundcloud"></i></a>
+                    <a href="https://youtube.com/@schlu?si=7Vjs_MMo_Wsz2Jex" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="w-10 h-10 rounded-full glass-card flex items-center justify-center text-beige hover:text-rosy-brown hover:border-rosy-brown transition"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.instagram.com/ben_schlu?cplk=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-10 h-10 rounded-full glass-card flex items-center justify-center text-beige hover:text-rosy-brown hover:border-rosy-brown transition"><i class="fab fa-instagram"></i></a>
+                    <a href="mailto:composer@bencarlin.de" aria-label="Email" class="w-10 h-10 rounded-full glass-card flex items-center justify-center text-beige hover:text-rosy-brown hover:border-rosy-brown transition"><i class="fas fa-envelope"></i></a>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-xs text-beige/50 font-light">
+                    <span>&copy; <span id="year"></span> Ben Carlin Schlüter. All Rights Reserved.</span>
+                    <span class="hidden sm:inline text-beige/25">&bull;</span>
+                    <button type="button" id="openImpressumBtn" class="text-beige/70 hover:text-rosy-brown underline underline-offset-4 transition-colors cursor-pointer">
+                        Impressum / Legal Notice
+                    </button>
+                </div>
+            </footer>
+
+        </div>
+    </section>
+
+    <!-- IMPRESSUM MODAL (Gemäß § 5 DDG - Zweisprachig DE / EN) -->
+    <div id="impressumModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-dark-green/85 backdrop-blur-md" role="dialog" aria-modal="true" aria-labelledby="impressumTitle">
+        <div class="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto glass-card bg-dark-green/95 rounded-3xl p-6 sm:p-10 border border-beige/25 shadow-2xl text-beige space-y-6">
+
+            <!-- Header mit Sprachumschalter DE / EN -->
+            <div class="flex items-start justify-between gap-4 border-b border-beige/15 pb-4">
+                <div>
+                    <span id="impressumSubtitle" class="text-xs uppercase tracking-widest text-rosy-brown font-semibold">Rechtliche Angaben</span>
+                    <h2 id="impressumTitle" class="font-serif text-2xl sm:text-3xl font-bold text-beige mt-1">Impressum</h2>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <!-- Sprach-Toggle -->
+                    <div class="inline-flex rounded-full glass-card-light p-1 border border-beige/15 text-xs font-semibold">
+                        <button type="button" id="langDeBtn" class="px-2.5 py-1 rounded-full bg-rosy-brown text-dark-green transition cursor-pointer">DE</button>
+                        <button type="button" id="langEnBtn" class="px-2.5 py-1 rounded-full text-beige/70 hover:text-beige transition cursor-pointer">EN</button>
+                    </div>
+
+                    <button type="button" id="closeImpressumBtn" aria-label="Close Legal Notice" class="w-9 h-9 rounded-full glass-card-light flex items-center justify-center text-beige/80 hover:text-rosy-brown hover:border-rosy-brown transition cursor-pointer">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- DEUTSCHE VERSION (Rechtlich maßgeblich) -->
+            <div id="impressumContentDe" class="space-y-5 text-sm text-beige/85 leading-relaxed">
+                <div class="space-y-1">
+                    <h3 class="font-semibold text-beige text-base">Angaben gemäß § 5 DDG (Digitale-Dienste-Gesetz)</h3>
+                    <p>
+                        Ben Carlin Schlüter<br>
+                        Freiberuflicher Komponist &amp; Musiker<br>
+                        Peter-Krahe-Str. 1<br>
+                        40599 Düsseldorf<br>
+                        Deutschland
+                    </p>
+                </div>
+
+                <div class="space-y-1">
+                    <h3 class="font-semibold text-beige text-base">Kontakt</h3>
+                    <p>
+                        E-Mail: <a href="mailto:composer@bencarlin.de" class="text-rosy-brown hover:underline">composer@bencarlin.de</a>
+                    </p>
+                </div>
+
+                <div class="space-y-1">
+                    <h3 class="font-semibold text-beige text-base">Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h3>
+                    <p>
+                        Ben Carlin Schlüter<br>
+                        Anschrift wie oben
+                    </p>
+                </div>
+
+                <div class="space-y-1">
+                    <h3 class="font-semibold text-beige text-base">Streitbeilegung</h3>
+                    <p class="text-xs text-beige/70">
+                        Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
+                    </p>
+                </div>
+
+                <div class="space-y-1">
+                    <h3 class="font-semibold text-beige text-base">Urheberrecht</h3>
+                    <p class="text-xs text-beige/70">
+                        Die durch den Seitenbetreiber erstellten musikalischen Werke, Tonaufnahmen, Texte und Inhalte auf diesen Seiten unterliegen dem deutschen Urheberrecht. Eine Vervielfältigung, Bearbeitung, Verbreitung oder Verwertung außerhalb der Grenzen des Urheberrechtes bedarf der schriftlichen Zustimmung des jeweiligen Autors bzw. Komponisten.
+                    </p>
+                </div>
+            </div>
+
+            <!-- ENGLISCHE VERSION (Übersetzung für internationale Besucher) -->
+            <div id="impressumContentEn" class="hidden space-y-5 text-sm text-beige/85 leading-relaxed">
+                <p class="text-xs italic text-beige/60 bg-midnight-green/30 border border-beige/10 rounded-xl px-3.5 py-2">
+                    Note: This English translation is provided for convenience. The German version above is legally binding under German law (§ 5 DDG).
+                </p>
+
+                <div class="space-y-1">
+                    <h3 class="font-semibold text-beige text-base">Information pursuant to § 5 DDG (German Digital Services Act)</h3>
+                    <p>
+                        Ben Carlin Schlüter<br>
+                        Freelance Composer &amp; Musician<br>
+                        Peter-Krahe-Str. 1<br>
+                        40599 Düsseldorf<br>
+                        Germany
+                    </p>
+                </div>
+
+                <div class="space-y-1">
+                    <h3 class="font-semibold text-beige text-base">Contact</h3>
+                    <p>
+                        Email: <a href="mailto:composer@bencarlin.de" class="text-rosy-brown hover:underline">composer@bencarlin.de</a>
+                    </p>
+                </div>
+
+                <div class="space-y-1">
+                    <h3 class="font-semibold text-beige text-base">Person Responsible for Content (§ 18 (2) MStV)</h3>
+                    <p>
+                        Ben Carlin Schlüter<br>
+                        Address as stated above
+                    </p>
+                </div>
+
+                <div class="space-y-1">
+                    <h3 class="font-semibold text-beige text-base">Dispute Resolution</h3>
+                    <p class="text-xs text-beige/70">
+                        We are neither willing nor obliged to participate in dispute resolution proceedings before a consumer arbitration board.
+                    </p>
+                </div>
+
+                <div class="space-y-1">
+                    <h3 class="font-semibold text-beige text-base">Copyright</h3>
+                    <p class="text-xs text-beige/70">
+                        The musical compositions, audio recordings, texts, and works created by the site operator on these pages are subject to German copyright law. Any reproduction, editing, distribution, or commercial use beyond the scope of copyright law requires the prior written consent of the respective author or composer.
+                    </p>
+                </div>
+            </div>
+
+            <div class="pt-4 border-t border-beige/15 flex justify-end">
+                <button type="button" id="closeImpressumFooterBtn" class="px-5 py-2 rounded-full bg-rosy-brown text-dark-green text-xs font-semibold hover:bg-beige transition cursor-pointer">
+                    Schließen / Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT: INTERACTIVE AUDIO PLAYER & HTML5 STREAMING LOGIC -->
+    <script>
+        // Set dynamic year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Impressum Modal & Language Switcher Logic
+        const impressumModal = document.getElementById('impressumModal');
+        const openImpressumBtn = document.getElementById('openImpressumBtn');
+        const closeImpressumBtn = document.getElementById('closeImpressumBtn');
+        const closeImpressumFooterBtn = document.getElementById('closeImpressumFooterBtn');
+
+        const langDeBtn = document.getElementById('langDeBtn');
+        const langEnBtn = document.getElementById('langEnBtn');
+        const impressumContentDe = document.getElementById('impressumContentDe');
+        const impressumContentEn = document.getElementById('impressumContentEn');
+        const impressumTitle = document.getElementById('impressumTitle');
+        const impressumSubtitle = document.getElementById('impressumSubtitle');
+
+        function setImpressumLang(lang) {
+        if (lang === 'en') {
+        impressumContentDe.classList.add('hidden');
+        impressumContentEn.classList.remove('hidden');
+        impressumTitle.textContent = 'Legal Notice (Impressum)';
+        impressumSubtitle.textContent = 'Legal Information';
+
+        langEnBtn.classList.add('bg-rosy-brown', 'text-dark-green');
+        langEnBtn.classList.remove('text-beige/70');
+        langDeBtn.classList.remove('bg-rosy-brown', 'text-dark-green');
+        langDeBtn.classList.add('text-beige/70');
+        } else {
+        impressumContentEn.classList.add('hidden');
+        impressumContentDe.classList.remove('hidden');
+        impressumTitle.textContent = 'Impressum';
+        impressumSubtitle.textContent = 'Rechtliche Angaben';
+
+        langDeBtn.classList.add('bg-rosy-brown', 'text-dark-green');
+        langDeBtn.classList.remove('text-beige/70');
+        langEnBtn.classList.remove('bg-rosy-brown', 'text-dark-green');
+        langEnBtn.classList.add('text-beige/70');
+        }
+        }
+
+        langDeBtn.addEventListener('click', () => setImpressumLang('de'));
+        langEnBtn.addEventListener('click', () => setImpressumLang('en'));
+
+        function openImpressum() {
+        impressumModal.classList.remove('hidden');
+        impressumModal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+        }
+
+        function closeImpressum() {
+        impressumModal.classList.add('hidden');
+        impressumModal.classList.remove('flex');
+        document.body.style.overflow = '';
+        }
+
+        openImpressumBtn.addEventListener('click', openImpressum);
+        closeImpressumBtn.addEventListener('click', closeImpressum);
+        closeImpressumFooterBtn.addEventListener('click', closeImpressum);
+
+        impressumModal.addEventListener('click', (e) => {
+        if (e.target === impressumModal) {
+        closeImpressum();
+        }
+        });
+
+        document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !impressumModal.classList.contains('hidden')) {
+        closeImpressum();
+        }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        });
+        });
+
+        // -------------------------------------------------------------
+        // VIDEO REEL PLAYLIST SELECTOR & YOUTUBE EMBED HELPER
+        // -------------------------------------------------------------
+        const videoItems = document.querySelectorAll('.video-item');
+        const videoFrame = document.getElementById('videoFrame');
+        const videoTitle = document.getElementById('videoTitle');
+        const videoDesc = document.getElementById('videoDesc');
+        const videoTag = document.getElementById('videoTag');
+
+        function getEmbedUrl(url, isHalfVolume = false) {
+        if (!url) return '';
+        let embedBase = url;
+        if (!embedBase.includes('/embed/')) {
+        let match = embedBase.match(/youtu\.be\/([a-zA-Z0-9_-]+)/);
+        if (match && match[1]) {
+        embedBase = `https://www.youtube-nocookie.com/embed/${match[1]}`;
+        } else {
+        match = embedBase.match(/[?&]v=([a-zA-Z0-9_-]+)/);
+        if (match && match[1]) {
+        embedBase = `https://www.youtube-nocookie.com/embed/${match[1]}`;
+        }
+        }
+        }
+
+        // Always include enablejsapi=1 so we can programmatically control volume if needed
+        let separator = embedBase.includes('?') ? '&' : '?';
+        let finalUrl = `${embedBase}${separator}enablejsapi=1&autoplay=0`;
+        if (isHalfVolume) {
+        finalUrl += `&volume=50`;
+        }
+        return finalUrl;
+        }
+
+        videoItems.forEach(item => {
+        item.addEventListener('click', () => {
+        videoItems.forEach(v => {
+        v.classList.remove('active', 'border-rosy-brown/60', 'glass-card');
+        v.classList.add('glass-card-light', 'border-beige/10');
+        });
+
+        item.classList.add('active', 'border-rosy-brown/60', 'glass-card');
+        item.classList.remove('glass-card-light', 'border-beige/10');
+
+        const rawVideoUrl = item.dataset.video;
+        const isHalfVol = item.dataset.halfVolume === 'true';
+        videoFrame.src = getEmbedUrl(rawVideoUrl, isHalfVol);
+
+        // If it's the half volume video, also send a postMessage command to the iframe after a short load delay
+        if (isHalfVol) {
+        setTimeout(() => {
+        try {
+        videoFrame.contentWindow.postMessage(JSON.stringify({
+        event: 'command',
+        func: 'setVolume',
+        args: [50]
+        }), '*');
+        } catch (e) {}
+        }, 800);
+        }
+
+        if (videoTitle) videoTitle.textContent = item.dataset.title;
+        if (videoDesc) videoDesc.textContent = item.dataset.desc;
+        if (videoTag) videoTag.textContent = item.dataset.tag;
+        });
+        });
+
+        if (videoItems.length > 0) {
+        const activeItem = document.querySelector('.video-item.active') || videoItems[0];
+        const isHalfVol = activeItem.dataset.halfVolume === 'true';
+        videoFrame.src = getEmbedUrl(activeItem.dataset.video, isHalfVol);
+        }
+
+        // -------------------------------------------------------------
+        // AUDIO TRACK DATA & HTML5 STREAMING CONFIGURATION
+        // -------------------------------------------------------------
+        const rawTracks = [
+        {
+        id: 1,
+        title: "The Nevermare",
+        category: "Game OST",
+        categoryLabel: "The Splinters of Athlandir - TTRPG",
+        duration: "2:00",
+        durationSec: 120,
+        audioUrl: "https://github.com/Ben-Carlin/Ben-Carlin-Composition-Archive/raw/refs/heads/main/Music-1.mp3",
+        desc: "Piano focused, soft strings, tense and mysterious, loop-based.",
+        icon: "fa-moon"
+        },
+        {
+        id: 2,
+        title: "Fight after Fight",
+        category: "Game OST",
+        categoryLabel: "The Splinters of Athlandir - TTRPG",
+        duration: "1:56",
+        durationSec: 116,
+        audioUrl: "https://github.com/Ben-Carlin/Ben-Carlin-Composition-Archive/raw/refs/heads/main/Music-2.mp3",
+        desc: "Orchestral, tense, loop-based.",
+        icon: "fa-khanda"
+        },
+        {
+        id: 3,
+        title: "Through cliffs and caverns",
+        category: "Game OST",
+        categoryLabel: "The Splinters of Athlandir - TTRPG",
+        duration: "3:56",
+        durationSec: 236,
+        audioUrl: "https://github.com/Ben-Carlin/Ben-Carlin-Composition-Archive/raw/refs/heads/main/Music-4.mp3",
+        desc: "Orchestral, calm, mysterious, loop-based.",
+        icon: "fa-compass"
+        },
+        {
+        id: 4,
+        title: "The Black Sheep Inn",
+        category: "Game OST",
+        categoryLabel: "The Splinters of Athlandir - TTRPG",
+        duration: "2:39",
+        durationSec: 159,
+        audioUrl: "https://github.com/Ben-Carlin/Ben-Carlin-Composition-Archive/raw/refs/heads/main/DnD%20-%20Peace%20and%20Quiet.mp3",
+        desc: "Cozy Guitar and Flute duet, loop-based.",
+        icon: "fa-mug-hot"
+        },
+        {
+        id: 5,
+        title: "The worst case",
+        category: "Game OST",
+        categoryLabel: "The Splinters of Athlandir - TTRPG",
+        duration: "2:12",
+        durationSec: 132,
+        audioUrl: "https://github.com/Ben-Carlin/Ben-Carlin-Composition-Archive/raw/refs/heads/main/Music-5.mp3",
+        desc: "Horror soundscape, extended techniques in strings, loop-based.",
+        icon: "fa-skull"
+        },
+        {
+        id: 6,
+        title: "Journey",
+        category: "Game OST",
+        categoryLabel: "Sea of Stars - Rescore",
+        duration: "1:36",
+        durationSec: 96,
+        audioUrl: "https://github.com/Ben-Carlin/Ben-Carlin-Composition-Archive/raw/refs/heads/main/Sea%20of%20Stars%20(Original%20Title%20Theme)%20(320kbps).mp3",
+        desc: "Acustric guitar and soft chamber orchestra, loop-based.",
+        icon: "fa-campground"
+        },
+        {
+        id: 7,
+        title: "As the Lichen grows...",
+        category: "classical",
+        categoryLabel: "Piano Concerto (Work-in-Progress)",
+        duration: "1:53",
+        durationSec: 113,
+        audioUrl: "https://github.com/Ben-Carlin/Ben-Carlin-Composition-Archive/raw/refs/heads/main/'As%20the%20Lichen%20grows...'%20(Piano%20Concert%20Sketch)%20(320kbps).mp3",
+        desc: "The beginning of my current project. A dreamy piano concerto depicting nature retaking the earth.",
+        icon: "fa-seedling"
+        },
+        {
+        id: 8,
+        title: "The Quintuplets (Intro)",
+        category: "film",
+        categoryLabel: "Quintuples - Web-Series by Tizian Herzberger",
+        duration: "0:21",
+        durationSec: 21,
+        audioUrl: "https://github.com/Ben-Carlin/Ben-Carlin-Composition-Archive/raw/refs/heads/main/Intro%20(Quintuples%20Webseries)%20(320kbps).mp3",
+        desc: "A wild jazz big-band introducing a slap-stick comedy drama.",
+        icon: "fa-drum"
+        },
+        {
+        id: 9,
+        title: "How peculiar",
+        category: "film",
+        categoryLabel: "Quintuples - Web-Series by Tizian Herzberger",
+        duration: "1:48",
+        durationSec: 108,
+        audioUrl: "https://github.com/Ben-Carlin/Ben-Carlin-Composition-Archive/raw/refs/heads/main/'How%20Peculiar...'%20(Quintuples%20Webseries%20OST)%20(320kbps).mp3",
+        desc: "Upright bass, shuffling drums, bassoon and saxophone. How else could italian quintuplet mafiosos sound?",
+        icon: "fa-pizza-slice"
+        },
+        {
+        id: 10,
+        title: "The Trees might be watching...",
+        category: "Game OST",
+        categoryLabel: "Orchestral Loop",
+        duration: "0:48",
+        durationSec: 48,
+        audioUrl: "https://github.com/Ben-Carlin/Ben-Carlin-Composition-Archive/raw/refs/heads/main/'The%20Trees%20might%20be%20watching...'%20(Orchestral%20Loop)%20(320kbps).mp3",
+        desc: "There is something in the woods.",
+        icon: "fa-tree"
+        },
+        {
+        id: 11,
+        title: "Mourned, then forgotten",
+        category: "Game OST",
+        categoryLabel: "The Splinters of Athlandir - TTRPG",
+        duration: "1:16",
+        durationSec: 76,
+        audioUrl: "https://github.com/Ben-Carlin/Ben-Carlin-Composition-Archive/raw/refs/heads/main/Loop1Pre.mp3",
+        desc: "Piano-concerto-like lamento for a fallen enemy.",
+        icon: "fa-droplet"
+        },
+        {
+        id: 12,
+        title: "Sorrowful love",
+        category: "film",
+        categoryLabel: "How to mend a broken Heart - short film by roberto Parseghian",
+        duration: "0:51",
+        durationSec: 51,
+        audioUrl: "https://github.com/Ben-Carlin/Ben-Carlin-Composition-Archive/raw/refs/heads/main/lmuwaltz.mp3",
+        desc: "A chopinesque waltz depicting the journey of heartbreak. Go to 'Film & Game Reels' to see it in context.",
+        icon: "fa-film"
+        },
+        {
+        id: 13,
+        title: "How to mend a broken Heart",
+        category: "film",
+        categoryLabel: "How to mend a broken Heart - short film by roberto Parseghian",
+        duration: "2:17",
+        durationSec: 137,
+        audioUrl: "https://github.com/Ben-Carlin/Ben-Carlin-Composition-Archive/raw/refs/heads/main/lmuarvo.mp3",
+        desc: "A priest is giving advice on how to move on. Inspired by Arvo Pärt's 'Spiegel im Spiegel'. Go to 'Film & Game Reels' to see it in context.",
+        icon: "fa-film"
+        },
+        {
+        id: 14,
+        title: "The Lusistanian Lands",
+        category: "film",
+        categoryLabel: "How to mend a broken Heart - short film by roberto Parseghian",
+        duration: "0:33",
+        durationSec: 33,
+        audioUrl: "https://github.com/Ben-Carlin/Ben-Carlin-Composition-Archive/raw/refs/heads/main/lmufado.mp3",
+        desc: "Inspired by portuguese Fado music. Go to 'Film & Game Reels' to see it in context.",
+        icon: "fa-film"
+        },
+        {
+        id: 15,
+        title: "May my Heart move on (Credits)",
+        category: "film",
+        categoryLabel: "How to mend a broke Heart - short film by roberto Parseghian",
+        duration: "1:01",
+        durationSec: 61,
+        audioUrl: "https://github.com/Ben-Carlin/Ben-Carlin-Composition-Archive/raw/refs/heads/main/lmucredits.mp3",
+        desc: "Mellow piano ostinatos underscoring the ending monologue of the film.",
+        icon: "fa-film"
+        },
+        {
+        id: 16,
+        title: "Natures Loom",
+        category: "Game OST",
+        categoryLabel: "Orchestral Loop",
+        duration: "1:58",
+        durationSec: 118,
+        audioUrl: "https://github.com/Ben-Carlin/Ben-Carlin-Composition-Archive/raw/refs/heads/main/Loop2Pre.mp3",
+        desc: "Piano focused, strings and wood winds | calm, relaxing, fantasy, loop-based",
+        icon: "fa-mountain"
+        },
+        {
+        id: 17,
+        title: "Waste no sigh on me",
+        category: "Game OST",
+        categoryLabel: "Orchestral Loop",
+        duration: "1:31",
+        durationSec: 91,
+        audioUrl: "https://github.com/Ben-Carlin/Ben-Carlin-Composition-Archive/raw/refs/heads/main/Loop3Pre.mp3",
+        desc: "Piano focused, swelling strings | tragic, loop-based",
+        icon: "fa-cloud-moon"
+        },
+        {
+        id: 18,
+        title: "Dawn-Rose",
+        category: ["classical", "Game OST"],
+        categoryLabel: "Piano and Chamber Strings",
+        duration: "2:11",
+        durationSec: 131,
+        audioUrl: "https://github.com/Ben-Carlin/Ben-Carlin-Composition-Archive/raw/refs/heads/main/'The%20Dawn%20Rose'%20(Piano%20and%20Strings)%20(320kbps).mp3",
+        desc: "Piano and chamber strings | melancholic",
+        icon: "fa-cloud-moon"
+        }
+        ];
+
+        // Alphabetically sort tracks by title
+        const tracks = [...rawTracks].sort((a, b) => a.title.localeCompare(b.title));
+
+        let currentTrackIndex = 0;
+        let isPlaying = false;
+        let currentAudio = null;
+        let currentTimeSec = 0;
+
+        const playBtn = document.getElementById('playBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const playerTitle = document.getElementById('playerTitle');
+        const playerCategory = document.getElementById('playerCategory');
+        const playerDesc = document.getElementById('playerDesc');
+        const playerAlbumIcon = document.getElementById('playerAlbumIcon');
+        const currentTimeEl = document.getElementById('currentTime');
+        const totalTimeEl = document.getElementById('totalTime');
+        const progressBar = document.getElementById('progressBar');
+        const progressBarContainer = document.getElementById('progressBarContainer');
+        const trackListContainer = document.getElementById('trackList');
+        const volumeSlider = document.getElementById('volumeSlider');
+
+        function renderTracklist(filter = 'all') {
+        trackListContainer.innerHTML = '';
+
+        const filteredTracks = filter === 'all'
+        ? tracks
+        : tracks.filter(t => {
+        if (Array.isArray(t.category)) {
+        return t.category.includes(filter);
+        }
+        return t.category === filter;
+        });
+
+        filteredTracks.forEach((track) => {
+        const globalIndex = tracks.findIndex(t => t.id === track.id);
+        const isCurrent = globalIndex === currentTrackIndex;
+
+        const trackCard = document.createElement('div');
+        trackCard.className = `p-3 rounded-xl flex items-center justify-between cursor-pointer transition-all duration-200 border ${
+        isCurrent
+        ? 'bg-midnight-green/60 border-rosy-brown/60 text-beige'
+        : 'bg-dark-green/30 border-beige/5 hover:border-beige/20 text-beige/80'
+        }`;
+
+        trackCard.innerHTML = `
+        <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center text-xs ${isCurrent ? 'bg-rosy-brown text-dark-green' : 'bg-midnight-green/50 text-beige/60'}">
+        <i class="fas ${isCurrent && isPlaying ? 'fa-volume-high animate-pulse' : track.icon}"></i>
+        </div>
+        <div>
+        <h5 class="font-semibold text-xs sm:text-sm ${isCurrent ? 'text-rosy-brown' : 'text-beige'}">${track.title}</h5>
+        <p class="text-[11px] text-beige/50">${track.categoryLabel}</p>
+        </div>
+        </div>
+        <span class="text-xs font-mono text-beige/50">${track.duration}</span>
+        `;
+
+        trackCard.addEventListener('click', () => {
+        selectTrack(globalIndex, true);
+        });
+
+        trackListContainer.appendChild(trackCard);
+        });
+        }
+
+        function selectTrack(index, autoPlay = false) {
+        const wasPlaying = isPlaying;
+
+        if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+        currentAudio = null;
+        }
+        isPlaying = false;
+        playBtn.innerHTML = '<i class="fas fa-play ml-0.5"></i>';
+
+        currentTrackIndex = index;
+        const track = tracks[currentTrackIndex];
+
+        playerTitle.textContent = track.title;
+        playerCategory.textContent = track.categoryLabel;
+        playerDesc.textContent = track.desc;
+        playerAlbumIcon.className = `fas ${track.icon}`;
+        totalTimeEl.textContent = track.duration;
+
+        currentTimeSec = 0;
+        updateProgressUI();
+
+        const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
+        renderTracklist(activeFilter);
+
+        if (autoPlay || wasPlaying) {
+        playAudio();
+        }
+        }
+
+        function togglePlay() {
+        if (isPlaying) {
+        pauseAudio();
+        } else {
+        playAudio();
+        }
+        }
+
+        function playAudio() {
+        const track = tracks[currentTrackIndex];
+
+        if (!track.audioUrl) {
+        alert("This track doesn't have an audio link configured yet!");
+        return;
+        }
+
+        if (!currentAudio) {
+        currentAudio = new Audio(track.audioUrl);
+        currentAudio.volume = volumeSlider.value;
+
+        currentAudio.addEventListener('timeupdate', () => {
+        if (isPlaying && currentAudio) {
+        currentTimeSec = Math.floor(currentAudio.currentTime);
+        updateProgressUI();
+        }
+        });
+
+        currentAudio.addEventListener('ended', () => {
+        nextTrack();
+        });
+        }
+
+        isPlaying = true;
+        playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+
+        currentAudio.play().catch(err => {
+        console.log("Playback error:", err);
+        isPlaying = false;
+        playBtn.innerHTML = '<i class="fas fa-play ml-0.5"></i>';
+        });
+
+        const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
+        renderTracklist(activeFilter);
+        }
+
+        function pauseAudio() {
+        isPlaying = false;
+        playBtn.innerHTML = '<i class="fas fa-play ml-0.5"></i>';
+        if (currentAudio) {
+        currentAudio.pause();
+        }
+        const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
+        renderTracklist(activeFilter);
+        }
+
+        function nextTrack() {
+        let nextIndex = (currentTrackIndex + 1) % tracks.length;
+        selectTrack(nextIndex, true);
+        }
+
+        function prevTrack() {
+        let prevIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
+        selectTrack(prevIndex, true);
+        }
+
+        function updateProgressUI() {
+        const track = tracks[currentTrackIndex];
+        const pct = track.durationSec > 0 ? (currentTimeSec / track.durationSec) * 100 : 0;
+        progressBar.style.width = `${Math.min(pct, 100)}%`;
+
+        const mins = Math.floor(currentTimeSec / 60);
+        const secs = currentTimeSec % 60;
+        currentTimeEl.textContent = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+
+        progressBarContainer.addEventListener('click', (e) => {
+        const rect = progressBarContainer.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const width = rect.width;
+        const pct = clickX / width;
+
+        currentTimeSec = Math.floor(pct * tracks[currentTrackIndex].durationSec);
+        if (currentAudio) {
+        currentAudio.currentTime = currentTimeSec;
+        }
+        updateProgressUI();
+        });
+
+        volumeSlider.addEventListener('input', (e) => {
+        if (currentAudio) {
+        currentAudio.volume = e.target.value;
+        }
+        });
+
+        playBtn.addEventListener('click', togglePlay);
+        nextBtn.addEventListener('click', nextTrack);
+        prevBtn.addEventListener('click', prevTrack);
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => {
+        b.classList.remove('active', 'bg-rosy-brown', 'text-dark-green', 'border-rosy-brown');
+        b.classList.add('border-beige/20', 'text-beige/80');
+        });
+        btn.classList.add('active', 'bg-rosy-brown', 'text-dark-green', 'border-rosy-brown');
+        btn.classList.remove('border-beige/20', 'text-beige/80');
+        renderTracklist(btn.dataset.filter);
+        });
+        });
+
+        // Initialize Audio Player State on Page Load
+        selectTrack(0, false);
+
+        // -------------------------------------------------------------
+        // AMBIENT DUST PARTICLES CANVAS (NO EMOJIS)
+        // -------------------------------------------------------------
+        const sporeCanvas = document.getElementById('sporeCanvas');
+        const sporeCtx = sporeCanvas.getContext('2d');
+
+        function resizeSporeCanvas() {
+        sporeCanvas.width = window.innerWidth;
+        sporeCanvas.height = window.innerHeight;
+        }
+        resizeSporeCanvas();
+        window.addEventListener('resize', resizeSporeCanvas);
+
+        const spores = Array.from({ length: 40 }, () => ({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        radius: Math.random() * 2 + 0.5,
+        color: Math.random() > 0.5 ? '#839958' : '#F7F4D5',
+        alpha: Math.random() * 0.4 + 0.15,
+        vx: (Math.random() - 0.5) * 0.2,
+        vy: -Math.random() * 0.3 - 0.1,
+        }));
+
+        function animateSpores() {
+        requestAnimationFrame(animateSpores);
+        sporeCtx.clearRect(0, 0, sporeCanvas.width, sporeCanvas.height);
+
+        spores.forEach(spore => {
+        spore.x += spore.vx;
+        spore.y += spore.vy;
+
+        if (spore.y < 0) spore.y = sporeCanvas.height;
+        if (spore.x < 0) spore.x = sporeCanvas.width;
+        if (spore.x > sporeCanvas.width) spore.x = 0;
+
+        sporeCtx.beginPath();
+        sporeCtx.arc(spore.x, spore.y, spore.radius, 0, Math.PI * 2);
+        sporeCtx.fillStyle = spore.color;
+        sporeCtx.globalAlpha = spore.alpha;
+        sporeCtx.fill();
+        });
+        }
+        animateSpores();
+
+        // -------------------------------------------------------------
+        // PARALLAX MOUSE EFFECT
+        // -------------------------------------------------------------
+        window.addEventListener('mousemove', (e) => {
+        const { clientX, clientY } = e;
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight / 2;
+
+        document.querySelectorAll('.parallax-layer').forEach(layer => {
+        const speed = parseFloat(layer.getAttribute('data-speed') || '0.02');
+        const x = (clientX - centerX) * speed;
+        const y = (clientY - centerY) * speed;
+        layer.style.transform = `translate(${x}px,${y}px)`;
+        });
+        });
+
+        // -------------------------------------------------------------
+        // CONTACT FORM AJAX SUBMISSION (FORMSPREE)
+        // -------------------------------------------------------------
+        const contactForm = document.getElementById('contactForm');
+        const formSuccessMessage = document.getElementById('formSuccessMessage');
+
+        contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(contactForm);
+
+        try {
+        const response = await fetch(contactForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+        'Accept': 'application/json'
+        }
+        });
+
+        if (response.ok) {
+        formSuccessMessage.classList.remove('hidden');
+        contactForm.reset();
+        setTimeout(() => {
+        formSuccessMessage.classList.add('hidden');
+        }, 6000);
+        } else {
+        alert('Oops! There was a problem submitting your form.');
+        }
+        } catch (error) {
+        alert('Oops! There was a problem connecting to the server.');
+        }
+        });
+    </script>
+</body>
+</html>
